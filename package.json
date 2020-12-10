@@ -1,0 +1,35 @@
+{
+  "name": "book-list",
+  "version": "0.0.1",
+  "description": "SPA Catalog of books",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "server": "nodemon index.js",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander272/catalog-of-books.git"
+  },
+  "author": "Alex <martynovalexander272@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexander272/catalog-of-books/issues"
+  },
+  "homepage": "https://github.com/Alexander272/catalog-of-books#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.8.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.6"
+  }
+}
