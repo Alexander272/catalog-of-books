@@ -1,5 +1,5 @@
-import { useState, useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useContext, useEffect, useCallback } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { Input } from '../components/Input/Input'
 import { Button } from '../components/Button/Button'
 import { Toasts } from '../components/Toasts/Toasts'
@@ -9,7 +9,7 @@ import { useMessage } from '../hooks/MessageHook'
 import { AuthContext } from '../context/AuthContext'
 import classes from '../styles/add.module.scss'
 
-export const AddPage = () => {
+export const EditPage = () => {
     const [form, setForm] = useState({
         name: '',
         url: '',
@@ -17,9 +17,23 @@ export const AddPage = () => {
         theYearOfPublishing: '',
         ISBN: '',
     })
-    const auth = useContext(AuthContext)
+    const { token } = useContext(AuthContext)
     const { loading, error, request, clearError } = useHttp()
     const { setValueMessage, message } = useMessage()
+    const bookId = useParams().id
+
+    const getBook = useCallback(async () => {
+        try {
+            const fetched = await request(`/api/book/${bookId}`, 'GET', null, {
+                Authtorization: `Bearer ${token}`,
+            })
+            setForm(fetched)
+        } catch (error) {}
+    }, [token, bookId, request])
+
+    useEffect(() => {
+        getBook()
+    }, [getBook])
 
     useEffect(() => {
         if (error) {
@@ -39,19 +53,12 @@ export const AddPage = () => {
     const saveHandler = async event => {
         try {
             const data = await request(
-                '/api/book/add',
-                'POST',
+                `/api/book/update/${bookId}`,
+                'PATCH',
                 { ...form },
-                { Authtorization: `Bearer ${auth.token}` },
+                { Authtorization: `Bearer ${token}` },
             )
             setValueMessage(data.message, 'success')
-            setForm({
-                name: '',
-                url: '',
-                author: '',
-                theYearOfPublishing: '',
-                ISBN: '',
-            })
         } catch (e) {}
     }
 

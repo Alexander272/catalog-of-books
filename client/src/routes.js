@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { AuthPage } from './pages/AuthPage'
 import { HomePage } from './pages/HomePage'
 import { AddPage } from './pages/AddPage'
+import { EditPage } from './pages/EditPage'
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -15,6 +16,9 @@ export const useRoutes = isAuthenticated => {
                 </Route>
                 <Route path="/add">
                     <AddPage />
+                </Route>
+                <Route path="/edit/:id">
+                    <EditPage />
                 </Route>
             </Switch>
         )

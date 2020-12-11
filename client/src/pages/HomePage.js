@@ -38,7 +38,7 @@ export const HomePage = () => {
     const deleteBook = async id => {
         try {
             console.log(id)
-            const data = await request(`/api/book/remove/${id}`, 'DELETE', null, {
+            await request(`/api/book/remove/${id}`, 'DELETE', null, {
                 Authtorization: `Bearer ${token}`,
             })
             toggleHandler()
