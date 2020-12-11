@@ -23,10 +23,14 @@
   "homepage": "https://github.com/Alexander272/catalog-of-books#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validator": "^6.8.0",
     "firebase": "^8.1.2",
-    "jsonwebtoken": "^8.5.1"
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

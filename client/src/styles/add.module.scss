@@ -1,0 +1,29 @@
+@import './THEME.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 1.6rem;
+    color: $mainColor;
+}
+
+.link {
+    font-size: 1rem;
+    display: inline-block;
+    color: $mainColor;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+    border: 1px solid $mainColor;
+    padding: 7px 15px;
+    border-radius: 7px;
+
+    &:hover {
+        color: #fff;
+        background-color: $mainColor;
+    }
+}

@@ -3,6 +3,7 @@ const bcript = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const firebase = require('firebase')
 const { check, validationResult } = require('express-validator')
+const keys = require('../keys')
 
 const Database = firebase.database()
 
@@ -11,7 +12,7 @@ const router = Router()
 router.post(
     '/register',
     [
-        check('name', 'Никнейм не должен быть пустым').isEmpty(),
+        check('name', 'Никнейм не должен быть пустым').isLength({ min: 1 }),
         check('email', 'Некорректный email').normalizeEmail().isEmail(),
         check('password', 'Минимальная длина пароля 6 символов').isLength({ min: 6 }),
     ],
@@ -62,7 +63,7 @@ router.post(
             if (!isMatch)
                 return res.status(400).json({ message: 'Некорректные данные при входе в систему' })
 
-            const token = jwt.sign({ userId: user.key, email }, 'some secret value', {
+            const token = jwt.sign({ userId: user.key, email }, keys.SESSION_SECRET, {
                 expiresIn: '1h',
             })
             res.json({ token, userId: user.key })

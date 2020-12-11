@@ -1,0 +1,151 @@
+@import './THEME.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.title {
+    font-size: 1.6rem;
+    color: $mainColor;
+}
+.link {
+    font-size: 1rem;
+    display: inline-block;
+    color: $mainColor;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+    border: 1px solid $mainColor;
+    padding: 7px 15px;
+    border-radius: 7px;
+
+    &:hover {
+        color: #fff;
+        background-color: $mainColor;
+    }
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book {
+    flex-basis: 22%;
+    margin: 20px 1%;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 5px #000000a6;
+    border-radius: 5px;
+    transition: all 0.4s ease-out;
+    background: #fff;
+
+    &:hover {
+        .btns {
+            left: -50px;
+            z-index: 10;
+        }
+    }
+}
+
+.btns {
+    position: absolute;
+    z-index: -5;
+    left: -10px;
+    top: 0;
+    transition: all 0.4s ease-out;
+    width: 50px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn {
+    border-radius: 50%;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 0 5px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+.editBtn {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: $fontColor;
+}
+.delBtn {
+    font-size: 0.8rem;
+}
+
+.imageContainer {
+    margin-bottom: 15px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.containerBlock {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.info {
+}
+.modalInfo {
+    margin: 10px;
+}
+
+.bookName {
+    color: $mainColor;
+    font-size: 1.2rem;
+    letter-spacing: 1.1px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.author {
+    text-align: center;
+}
+.extraInfo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media (max-width: 1060px) {
+    .book {
+        flex-basis: 31%;
+    }
+}
+
+@media (max-width: 770px) {
+    .book {
+        flex-basis: 48%;
+        margin: 10px 1%;
+    }
+}
+
+@media (max-width: 660px) {
+    .title {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 530px) {
+    .book {
+        flex-basis: 98%;
+    }
+}

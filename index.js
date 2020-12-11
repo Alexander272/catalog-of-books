@@ -1,6 +1,9 @@
 const express = require('express')
 const path = require('path')
 const firebase = require('firebase')
+const helmet = require('helmet')
+const compression = require('compression')
+const cors = require('cors')
 
 const app = express()
 
@@ -14,8 +17,19 @@ const firebaseApp = firebase.initializeApp({
     messagingSenderId: '46973059541',
     appId: '1:46973059541:web:ba582bfa17829921d17d5c',
 })
+const corsOptions = {
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: true,
+    credentials: true,
+}
+
+app.use(helmet())
+app.use(compression())
+
+app.use(cors({ ...corsOptions, optionsSuccessStatus: 200 }))
 
 app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api/book', require('./routes/book.routes'))
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
