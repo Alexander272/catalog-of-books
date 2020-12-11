@@ -5,18 +5,29 @@ export const useAuth = () => {
     const [ready, setReady] = useState(false)
     const [userId, setUserId] = useState(null)
 
-    const login = useCallback((jwtToken, id) => {
-        setToken(jwtToken)
-        setUserId(id)
-        localStorage.setItem('Token', jwtToken)
-    }, [])
-
     const logout = useCallback(() => {
         setToken(null)
         setUserId(null)
 
         localStorage.removeItem('Token')
     }, [])
+
+    const autoLogot = useCallback(() => {
+        setTimeout(() => {
+            console.log('timer')
+            logout()
+        }, 60 * 60 * 1000)
+    }, [logout])
+
+    const login = useCallback(
+        (jwtToken, id = null) => {
+            setToken(jwtToken)
+            setUserId(id)
+            autoLogot()
+            localStorage.setItem('Token', jwtToken)
+        },
+        [autoLogot],
+    )
 
     useEffect(() => {
         const data = localStorage.getItem('Token')
